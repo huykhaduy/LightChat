@@ -1,9 +1,10 @@
-package com.chat.lightchat;
+package com.chat.lightchat.views;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import com.chat.lightchat.R;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
