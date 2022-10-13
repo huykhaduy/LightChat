@@ -25,6 +25,12 @@ public class User {
         this.password = password;
     }
 
+//    public User(String fullName, String email, String password){
+//        this.fullName = fullName;
+//        this.email = email;
+//        this.password = password;
+//    }
+
     public User(String fullName, String email, String password, String confirmPassword) {
         this.email = email;
         this.fullName = fullName;

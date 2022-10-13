@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace 'com.chat.lightchat'
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.chat.lightchat"
@@ -13,7 +13,7 @@ android {
         targetSdk 32
         versionCode 1
         versionName "1.0"
-
+        multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -27,6 +27,11 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    buildFeatures {
+        viewBinding true
+    }
+    buildToolsVersion '33.0.0'
 }
 
 dependencies {
@@ -34,6 +39,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'com.google.android.material:material:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
@@ -43,5 +49,22 @@ dependencies {
 
     //Libraries
     implementation 'com.airbnb.android:lottie:5.2.0'
+
+    // Scalable Size Unit ( SP for diffent screen sizes)
+//    implementation 'com.intuit.sdp:sdp-android:1.0.6'
+//    implementation 'com.intuit.sdp:ssp-android:1.0.6'
+
+    // Rounded ImageView
+    implementation 'com.makeramen:roundedimageview:2.3.0'
+
+    // Firebase
+    implementation 'com.google.firebase:firebase-messaging:23.0.8'
+    implementation 'com.google.firebase:firebase-firestore:24.3.1'
+
+
+    implementation 'com.google.android.material:material:1.6.1'
+
+    //MultiDex
+    implementation 'androidx.multidex:multidex:2.0.1'
 
 }

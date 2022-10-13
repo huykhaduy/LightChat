@@ -21,6 +21,7 @@ public class RegisterPresenter implements  RegisterContract.Presenter{
     public void handleRegister(String fullName, String email, String password, String confirmPassword) {
 
         User user = new User(fullName, email, password, confirmPassword);
+//            User user = new User(fullName, email, password);
 
         if(!user.validation().equals("")) {
             mView.registerFailure(user.validation());

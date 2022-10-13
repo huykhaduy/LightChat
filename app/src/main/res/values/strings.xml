@@ -1,6 +1,27 @@
 <resources>
     <string name="app_name">LightChat</string>
     <string name="email">Email</string>
+    <string name="text_name">Họ và tên</string>
+    <string name="password">Mật khẩu</string>
     <string name="text_register"><u>Register</u></string>
     <string name="text_login"><u>Login</u></string>
+    <string name="text_welcome">Chào mừng bạn đến LighChat!</string>
+    <string name="hint_welcome2">Vui lòng đăng nhập và đăng ký để tiếp tục</string>
+    <string name="hint_welcome_signup">Vui lòng đăng ký để tiếp tục</string>
+    <string name="text_signup_email">Đăng ký với email</string>
+    <string name="text_login_welcome">Đăng nhập ngay</string>
+    <string name="text_login_email">Đăng nhập với email</string>
+    <string name="hint_login_remember">Nhớ đăng nhập</string>
+    <string name="hint_signup_policy">Tôi đồng ý với điều khoản</string>
+    <string name="text_login_forgot_password">Quên mật khẩu?</string>
+    <string name="text_login_3">Đăng nhập</string>
+    <string name="hint_login_different">Đăng nhập bằng cách khác</string>
+    <string name="hint_signup_different">Đăng ký bằng cách khác</string>
+    <string name="text_signup">Đăng ký</string>
+    <string name="text_signup_now">Đăng ký ngay</string>
+    <string name="text_login_now">Đăng nhập ngay</string>
+    <string name="hint_no_account">Bạn không có tài khoản?</string>
+    <string name="hint_have_account">Bạn đã có tài khoản?</string>
+
+
 </resources>
