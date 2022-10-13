@@ -1,8 +1,12 @@
 package com.chat.lightchat.views;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import com.chat.lightchat.R;
 import com.chat.lightchat.databinding.ActivityLoginUserBinding;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -85,7 +89,17 @@ public class LoginUserActivity extends AppCompatActivity {
         }
 
         private void signIn() {
+            String textEmail = binding.inputEditTextEmail.getText().toString().trim();
+            String textPassword = binding.inputEditTextPassword.getText().toString().trim();
+            FirebaseAuth mAuth  = FirebaseAuth.getInstance();
 
+            mAuth.signInWithEmailAndPassword(textEmail, textPassword).addOnCompleteListener(this, task ->{
+                if(task.isSuccessful()){
+                    //Dont have intent
+                }else{
+                    showToast("Vui lòng nhập lại email hoặc mật khẩu");
+                }
+            });
         }
 
         private Boolean isValidSignInDetails(){
