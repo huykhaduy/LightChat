@@ -8,22 +8,55 @@
     tools:context=".views.LoginUserActivity">
 
 
-    <Button
-        android:id="@+id/btnLogin"
+    <FrameLayout
+        android:id="@+id/FrameLayout"
         android:layout_width="0dp"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginTop="48dp"
         android:layout_marginEnd="15dp"
-        android:background="@drawable/btn_login"
-        android:fontFamily="@font/tienne"
-        android:text="@string/text_login_3"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
+        android:animateLayoutChanges="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioBtnLogin" />
+        app:layout_constraintTop_toBottomOf="@+id/radioBtnLogin">
+
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@drawable/btn_login"
+            android:fontFamily="@font/tienne"
+            android:text="@string/text_login_3"
+            android:textAllCaps="false"
+            android:textColor="@color/white" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center"
+            android:visibility="invisible"/>
+
+
+
+    </FrameLayout>
+<!--    <Button-->
+<!--        android:id="@+id/btnLogin"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="48dp"-->
+<!--        android:layout_marginStart="15dp"-->
+<!--        android:layout_marginTop="48dp"-->
+<!--        android:layout_marginEnd="15dp"-->
+<!--        android:background="@drawable/btn_login"-->
+<!--        android:fontFamily="@font/tienne"-->
+<!--        android:text="@string/text_login_3"-->
+<!--        android:textAllCaps="false"-->
+<!--        android:textColor="@color/white"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.0"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/radioBtnLogin" />-->
 
     <TextView
         android:id="@+id/textView3"
@@ -131,7 +164,7 @@
     <com.google.android.material.textfield.TextInputLayout
         app:startIconDrawable="@drawable/lock"
         app:passwordToggleEnabled="true"
-        app:passwordToggleTint="#4A64F0"
+        app:passwordToggleTint="#0063FC"
         android:id="@+id/inputTextPassword"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -176,7 +209,7 @@
         android:layout_marginTop="28dp"
         android:layout_marginEnd="15dp"
         android:text="@string/text_login_forgot_password"
-        android:textColor="#0354F1"
+        android:textColor="#0063FC"
         android:textSize="13sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inputTextPassword" />
@@ -191,7 +224,7 @@
         android:hint="@string/hint_login_different"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
+        app:layout_constraintTop_toBottomOf="@+id/FrameLayout" />
 
 
     <RelativeLayout
@@ -206,7 +239,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnLogin">
+        app:layout_constraintTop_toBottomOf="@id/FrameLayout">
 
 
         <ImageButton
@@ -257,7 +290,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
         android:text="@string/text_signup_now"
-        android:textColor="#2F6FDA"
+        android:textColor="#0063FC"
         android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"

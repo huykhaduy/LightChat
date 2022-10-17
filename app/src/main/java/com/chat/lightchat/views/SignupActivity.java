@@ -3,6 +3,7 @@ package com.chat.lightchat.views;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.chat.lightchat.databinding.ActivitySignupBinding;
+import com.chat.lightchat.utilities.Constants;
 import com.chat.lightchat.utilities.PreferenceManager;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -13,6 +14,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
+import android.view.View;
 import android.widget.Toast;
 
 import java.util.HashMap;
@@ -34,12 +36,16 @@ public class SignupActivity extends AppCompatActivity {
     }
 
     private void setListeners(){
-        binding.textSignIn.setOnClickListener(v -> startActivity(new Intent(getApplicationContext(),LoginUserActivity.class)));
+//        binding.textSignIn.setOnClickListener(v -> startActivity(new Intent(getApplicationContext(),LoginUserActivity.class)));
+        binding.textSignIn.setOnClickListener(v -> onBackPressed());
+
         binding.btnLogin.setOnClickListener(v->{
-            if(isValidSignUpDetails()){
-                signUp();
-            }
-        });
+                if(isValidSignUpDetails()){
+                    signUp();
+                }
+            });
+
+
     }
 
     private void showToast(String msg){
@@ -65,7 +71,7 @@ public class SignupActivity extends AppCompatActivity {
 //                .addOnFailureListener(exception ->{
 //                    showToast(exception.getMessage());
 //                });
-
+        loading(true);
         //Use Authe
         String textFullName = binding.inputEditTextName.getText().toString().trim();
         String textEmail = binding.inputEditTextEmail.getText().toString().trim();
@@ -77,22 +83,29 @@ public class SignupActivity extends AppCompatActivity {
                         // Sign in success, update UI with the signed-in user's information
                         //Activity dont have :3
                         showToast("Bạn đã đăng ký thành công");
+                        loading(false);
                         database = FirebaseFirestore.getInstance();
                         userID = mAuth.getCurrentUser().getUid();
                         DocumentReference documentReference = database.collection("users").document(userID);
                         Map<String, Object> user = new HashMap<>();
-                        user.put("fullName",textFullName );
-                        user.put("email",textEmail );
+                        user.put(Constants.KEY_FULL_NAME,textFullName );
+                        user.put(Constants.KEY_EMAIL,textEmail );
                         documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void unused) {
                                 Log.d("TAG", "onSucess: user Profile is created for" + userID );
+                                preferenceManager.putBoolean(Constants.KEY_IS_SIGNED_IN, true);
+                                preferenceManager.putString(Constants.KEY_USER_ID, userID);
+                                preferenceManager.putString(Constants.KEY_FULL_NAME,textFullName );
+                                //Next Intent
                             }
                         });
                     } else {
                         // If sign in fails, display a message to the user.
-                        Toast.makeText( SignupActivity.this, "Đăng ký thất bại.",
-                                Toast.LENGTH_SHORT).show();
+
+                        showToast("Đăng ký thất bại.");
+                        loading(false);
+
                     }
                 });
 
@@ -114,9 +127,24 @@ public class SignupActivity extends AppCompatActivity {
             return false;
         }else if(binding.inputEditTextPassword.getText().toString().trim().length() < 6){
             showToast("Độ dài mật khẩu cần ít nhất 6 kí tự");
+            return false;
+        }else if(binding.radioBtnLogin.isChecked() == false ){
+            showToast("Đồng ý điều khoản trước khi đăng ký");
+            return false;
         }
 
         return true;
+    }
+
+    private void loading(Boolean isLoading){
+        if(isLoading){
+            binding.btnLogin.setVisibility(View.INVISIBLE);
+            binding.progressBar.setVisibility(View.VISIBLE);
+        } else {
+            binding.progressBar.setVisibility(View.INVISIBLE);
+            binding.btnLogin.setVisibility(View.VISIBLE);
+        }
+
     }
 
 }

@@ -6,30 +6,60 @@
     android:layout_height="match_parent"
     tools:context=".views.SignupActivity">
 
-
-    <Button
-        android:id="@+id/btnLogin"
+    <FrameLayout
+        android:id="@+id/FrameLayout"
         android:layout_width="0dp"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="38dp"
         android:layout_marginEnd="15dp"
-        android:background="@drawable/btn_login"
-        android:fontFamily="@font/tienne"
-        android:text="@string/text_signup"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
+        android:animateLayoutChanges="true"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioBtnLogin" />
+        app:layout_constraintTop_toBottomOf="@+id/radioBtnLogin">
+
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@drawable/btn_login"
+            android:fontFamily="@font/tienne"
+            android:text="@string/text_login_3"
+            android:textAllCaps="false"
+            android:textColor="@color/white" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center"
+            android:visibility="invisible"/>
+    </FrameLayout>
+
+<!--    <Button-->
+<!--        android:id="@+id/btnLogin"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="48dp"-->
+<!--        android:layout_marginStart="15dp"-->
+<!--        android:layout_marginTop="35dp"-->
+<!--        android:layout_marginEnd="15dp"-->
+<!--        android:background="@drawable/btn_login"-->
+<!--        android:fontFamily="@font/tienne"-->
+<!--        android:text="@string/text_signup"-->
+<!--        android:textAllCaps="false"-->
+<!--        android:textColor="@color/white"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.5"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/radioBtnLogin" />-->
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="10dp"
         android:fontFamily="@font/tienne"
         android:padding="5sp"
         android:text="@string/text_signup"
@@ -166,7 +196,7 @@
     <com.google.android.material.textfield.TextInputLayout
         app:startIconDrawable="@drawable/lock"
         app:passwordToggleEnabled="true"
-        app:passwordToggleTint="#4A64F0"
+        app:passwordToggleTint="#0063FC"
         android:id="@+id/inputTextPassword"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -207,12 +237,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/tienne"
         android:hint="@string/hint_signup_different"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
+        app:layout_constraintTop_toBottomOf="@+id/FrameLayout" />
 
     <RelativeLayout
         android:id="@+id/relativeLayout"
@@ -220,13 +250,13 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical|center_horizontal"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="55dp"
         android:layout_marginEnd="15dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnLogin">
+        app:layout_constraintTop_toBottomOf="@id/FrameLayout">
 
 
         <ImageButton
@@ -266,7 +296,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
-            android:layout_marginTop="28dp"
+            android:layout_marginTop="20dp"
             android:hint="@string/hint_have_account"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
@@ -275,9 +305,9 @@
             android:id="@+id/textSignIn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
+            android:layout_marginTop="20dp"
             android:text="@string/text_login_now"
-            android:textColor="#2F6FDA"
+            android:textColor="#0063FC"
             android:textSize="15sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
