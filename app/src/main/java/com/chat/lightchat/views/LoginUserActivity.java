@@ -112,7 +112,7 @@ public class LoginUserActivity extends AppCompatActivity {
                 if(task.isSuccessful()){
                     loading(false);
                     showToast("Bạn đã đăng nhập thành công");
-
+                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         //Test doan code nay để lấy data quăng qua nextActivity bằng preferenceManager, nó chạy được, nma sẽ phát sinh vd: quay về welcome, lúc này cần 1 intent mới dể kết thúc task cũ
 //                    database = FirebaseFirestore.getInstance();
 //                    userID = mAuth.getCurrentUser().getUid();

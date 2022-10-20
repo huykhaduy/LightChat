@@ -22,6 +22,9 @@
     <string name="text_login_now">Đăng nhập ngay</string>
     <string name="hint_no_account">Bạn không có tài khoản?</string>
     <string name="hint_have_account">Bạn đã có tài khoản?</string>
-
+    <string name="text_mess">Đoạn chat</string>
+    <string name="text_profile">Hồ sơ</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

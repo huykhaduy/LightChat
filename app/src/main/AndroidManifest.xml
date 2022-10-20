@@ -54,6 +54,8 @@
             android:name=".views.SignupActivity"
             android:windowSoftInputMode="adjustResize"/>
 
+        <activity android:name=".views.MainActivity"/>
+
         <service
             android:name=".firebase.MessagingService"
             android:exported="false">
