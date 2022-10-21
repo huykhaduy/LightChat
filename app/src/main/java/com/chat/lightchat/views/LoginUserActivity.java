@@ -94,7 +94,7 @@ public class LoginUserActivity extends AppCompatActivity {
 
 //        binding.btnLogin.setOnClickListener(v -> addDataFireStore());
 
-        binding.textSignUp.setOnClickListener(v -> startActivity(new Intent(getApplicationContext(),SignupActivity.class)));
+        binding.btnSignUp.setOnClickListener(v -> startActivity(new Intent(getApplicationContext(),SignupActivity.class)));
 
     }
 
@@ -158,7 +158,6 @@ public class LoginUserActivity extends AppCompatActivity {
                 binding.progressBar.setVisibility(View.INVISIBLE);
                 binding.btnLogin.setVisibility(View.VISIBLE);
             }
-
         }
 //    private void addDataFireStore(){
 //

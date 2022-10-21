@@ -260,7 +260,7 @@
 
 
         <ImageButton
-            android:id="@+id/btn_login_google3"
+            android:id="@+id/btn_login_google"
             android:layout_width="145dp"
             android:layout_height="48dp"
             android:layout_gravity="center_horizontal"
@@ -273,22 +273,24 @@
             tools:ignore="DuplicateSpeakableTextCheck" />
 
 
-        <Button
+        <com.facebook.login.widget.LoginButton
             android:id="@+id/btn_login_face"
             android:layout_width="145dp"
             android:layout_height="48dp"
             android:layout_gravity="center_horizontal"
+            android:paddingBottom="15dp"
+            android:paddingTop="15dp"
+            android:paddingLeft="10dp"
             android:layout_marginStart="30dp"
             android:layout_marginTop="0dp"
             android:layout_marginEnd="15dp"
             android:layout_marginBottom="0dp"
-            android:layout_toRightOf="@+id/btn_login_google3"
-            android:background="@drawable/btn_login_2"
-            android:text="facebook"
+            android:layout_toRightOf="@+id/btn_login_google"
             android:textAllCaps="false"
-            android:textColor="#2F6FDA"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            xmlns:fb="http://schemas.android.com/apk/res-auto"
+            fb:com_facebook_login_text="Facebook"
+            />
     </RelativeLayout>
 
         <TextView

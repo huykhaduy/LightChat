@@ -22,7 +22,7 @@
         app:layout_constraintTop_toBottomOf="@+id/radioBtnLogin">
 
         <Button
-            android:id="@+id/btnLogin"
+            android:id="@+id/btn_login"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:background="@drawable/btn_login"
@@ -197,13 +197,13 @@
         android:hint="@string/hint_login_remember"
         android:textColor="@color/black"
         android:textSize="12sp"
-        app:layout_constraintEnd_toStartOf="@+id/textView8"
+        app:layout_constraintEnd_toStartOf="@+id/textForgetPwd"
         app:layout_constraintHorizontal_bias="0.052"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inputTextPassword" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/textForgetPwd"
         android:layout_width="98dp"
         android:layout_height="23dp"
         android:layout_marginTop="28dp"
@@ -243,7 +243,7 @@
 
 
         <ImageButton
-            android:id="@+id/btn_login_google3"
+            android:id="@+id/btn_login_google"
             android:layout_width="145dp"
             android:layout_height="48dp"
             android:layout_gravity="center_horizontal"
@@ -256,22 +256,42 @@
             tools:ignore="DuplicateSpeakableTextCheck" />
 
 
-        <Button
+<!--        <Button-->
+<!--            android:id="@+id/btn_login_face"-->
+<!--            android:layout_width="145dp"-->
+<!--            android:layout_height="48dp"-->
+<!--            android:layout_gravity="center_horizontal"-->
+<!--            android:layout_marginStart="30dp"-->
+<!--            android:layout_marginTop="0dp"-->
+<!--            android:layout_marginEnd="15dp"-->
+<!--            android:layout_marginBottom="0dp"-->
+<!--            android:layout_toRightOf="@+id/btn_login_google3"-->
+<!--            android:background="@drawable/btn_login_2"-->
+<!--            android:text="facebook"-->
+<!--            android:textAllCaps="false"-->
+<!--            android:textColor="#2F6FDA"-->
+<!--            android:textSize="20sp"-->
+<!--            android:textStyle="bold" />-->
+
+
+        <com.facebook.login.widget.LoginButton
             android:id="@+id/btn_login_face"
             android:layout_width="145dp"
             android:layout_height="48dp"
             android:layout_gravity="center_horizontal"
+            android:paddingBottom="15dp"
+            android:paddingTop="15dp"
+            android:paddingLeft="10dp"
             android:layout_marginStart="30dp"
             android:layout_marginTop="0dp"
             android:layout_marginEnd="15dp"
             android:layout_marginBottom="0dp"
-            android:layout_toRightOf="@+id/btn_login_google3"
-            android:background="@drawable/btn_login_2"
-            android:text="facebook"
+            android:layout_toRightOf="@+id/btn_login_google"
             android:textAllCaps="false"
-            android:textColor="#2F6FDA"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            xmlns:fb="http://schemas.android.com/apk/res-auto"
+            fb:com_facebook_login_text="Facebook"
+            />
     </RelativeLayout>
 
     <TextView
@@ -285,7 +305,7 @@
         app:layout_constraintTop_toBottomOf="@+id/relativeLayout_btn" />
 
     <TextView
-        android:id="@+id/textSignUp"
+        android:id="@+id/btn_sign_up"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"

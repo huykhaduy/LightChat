@@ -1,13 +1,24 @@
 package com.chat.lightchat.presenters.login;
 
-public interface LoginContract {
-    interface View {
-        void loginSuccess();
-        void loginFailure(String error);
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+
+import com.facebook.AccessToken;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.firebase.auth.FirebaseUser;
+
+public class LoginContract {
+    public interface View{
+        void showUserMain(FirebaseUser user);
+        void showLoginSuccess(String text);
+        void showLoginFail(String text);
+        void showLoading(Boolean isLoading);
     }
 
-    interface Presenter {
-        void setView(LoginContract.View view);
-        void handleLogin(String email, String password);
+    public interface Presenter{
+        void loginGoogle(Intent data);
+        void loginFacebook(AccessToken accessToken);
+        void loginAccount(String username, String password);
     }
 }
