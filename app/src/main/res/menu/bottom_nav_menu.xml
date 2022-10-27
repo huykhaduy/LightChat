@@ -5,6 +5,12 @@
         android:id="@+id/chat"
         android:icon="@drawable/chat"
         android:title="@string/text_mess" />
+
+    <item android:id="@+id/friends"
+        android:icon="@drawable/groups"
+        android:title="@string/text_friends"/>
+<!--        android:icon=-->
+
     <item
         android:id="@+id/profile"
         android:icon="@drawable/user"

@@ -17,14 +17,14 @@
 <!--        <activity-->
 <!--            android:name=".views.WelcomeActivity"-->
 <!--            android:exported="false" />-->
-        <activity
-            android:name=".views.LoginActivity"
-            android:windowSoftInputMode="adjustResize"
-            android:exported="false" />
-        <activity
-            android:name=".views.RegisterActivity"
-            android:windowSoftInputMode="adjustResize"
-            android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".views.LoginActivity"-->
+<!--            android:windowSoftInputMode="adjustResize"-->
+<!--            android:exported="false" />-->
+<!--        <activity-->
+<!--            android:name=".views.RegisterActivity"-->
+<!--            android:windowSoftInputMode="adjustResize"-->
+<!--            android:exported="false" />-->
 
 <!--        <activity-->
 <!--            android:name=".views.SplashActivity"-->
@@ -50,11 +50,19 @@
         </activity>
 
         <activity
-            android:name=".views.LoginUserActivity"
-            android:windowSoftInputMode="adjustResize"/>
+            android:name=".views.LoginActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:exported="false" />
         <activity
-            android:name=".views.SignupActivity"
-            android:windowSoftInputMode="adjustResize"/>
+            android:name=".views.RegisterActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".views.LoginUserActivity"-->
+<!--            android:windowSoftInputMode="adjustResize"/>-->
+<!--        <activity-->
+<!--            android:name=".views.SignupActivity"-->
+<!--            android:windowSoftInputMode="adjustResize"/>-->
 
         <activity android:name=".views.MainActivity"/>
 

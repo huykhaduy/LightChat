@@ -57,6 +57,9 @@ dependencies {
     // Rounded ImageView
     implementation 'com.makeramen:roundedimageview:2.3.0'
 
+    //Rounded ava
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+
     // Firebase
     implementation 'com.google.firebase:firebase-messaging:23.0.8'
     implementation 'com.google.firebase:firebase-firestore:24.3.1'
@@ -67,7 +70,7 @@ dependencies {
     // Google login
     implementation 'com.google.android.gms:play-services-auth:20.3.0'
 
-
+    // Bottom
     implementation 'com.google.android.material:material:1.6.1'
 
     //MultiDex
