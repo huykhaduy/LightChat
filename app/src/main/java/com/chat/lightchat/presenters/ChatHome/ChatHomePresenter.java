@@ -31,7 +31,7 @@ public class ChatHomePresenter implements ChatHomeContract.Presenter{
     public void listerForIncomingChatHome(String userID) {
         FirebaseFirestore ref = FirebaseFirestore.getInstance();
         ref.collection("ChatRoom").whereArrayContains("listMemberId", userID)
-                .orderBy("lastUpdate", Query.Direction.DESCENDING).limitToLast(2000)
+                .orderBy("lastUpdate", Query.Direction.ASCENDING)
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @SuppressLint("NotifyDataSetChanged")
                     @Override

@@ -35,13 +35,6 @@ public class ChatMessage {
         this.messType = messType;
     }
 
-//    public static List<ChatMessage> getListMessages(String chatId, int limit){
-//        limit = LIMIT_MESSAGE;
-//        FirebaseFirestore ref = FirebaseFirestore.getInstance();
-//        ref.collection("Messages").document(chatId).collection("conversations").orderBy("createAt", Query.Direction.ASCENDING).limitToLast(limit)
-//                .
-//    }
-
     public static void saveMessage(FirebaseUser user, String chatId, String body, int type){
         if (user == null)
             return;
