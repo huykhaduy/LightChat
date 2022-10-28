@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
@@ -52,9 +53,9 @@ public class ChatMessage {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
                         Log.d(TAG, "DocumentSnapshot written with ID: " + documentReference.getId());
-                        ChatConversation conversation = ChatConversation.getChatConversationId(chatId);
-                        conversation.setLastUpdate(null);
-                        ChatConversation.updateChatConversation(chatId, conversation);
+                        DocumentReference docRef = ref.collection("ChatRoom").document(chatId);
+                        docRef.update("sampleText", body);
+                        docRef.update("lastUpdate", FieldValue.serverTimestamp());
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {

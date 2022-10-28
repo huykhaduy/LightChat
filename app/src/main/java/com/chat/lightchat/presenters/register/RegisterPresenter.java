@@ -41,6 +41,7 @@ public class RegisterPresenter extends LoginPresenter implements RegisterContrac
                                 mView.showLoading(false);
                                 mView.showLoginSuccess("Thành công");
                                 FirebaseUser user = mAuth.getCurrentUser();
+                                saveNewUserToPublicInfo(user);
                                 mView.showUserMain(user);
                             }
                         }

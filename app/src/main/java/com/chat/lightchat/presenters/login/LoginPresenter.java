@@ -142,11 +142,15 @@ public class LoginPresenter implements LoginContract.Presenter {
         return "";
     }
 
-    private void saveNewUserToPublicInfo(Task<AuthResult> task, FirebaseUser user){
+    protected void saveNewUserToPublicInfo(Task<AuthResult> task, FirebaseUser user){
         boolean isNewbie = task.getResult().getAdditionalUserInfo().isNewUser();
         if (isNewbie && user != null){
-            PublicUser publicUser = new PublicUser(user, true, null);
-            PublicUser.saveUserInfo(publicUser);
+            saveNewUserToPublicInfo(user);
         }
+    }
+
+    protected void saveNewUserToPublicInfo(FirebaseUser user){
+        PublicUser publicUser = new PublicUser(user, true, null);
+        PublicUser.saveUserInfo(publicUser);
     }
 }

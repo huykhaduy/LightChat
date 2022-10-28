@@ -6,12 +6,12 @@ import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.ServerTimestamp;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +20,8 @@ public class ChatConversation {
     private String chatName;
     private String imageUrl;
     private String sampleText;
-    private @ServerTimestamp Timestamp createAt;
+    private @ServerTimestamp
+    Timestamp createAt;
     private @ServerTimestamp Timestamp lastUpdate;
     private List<String> listMemberId;
     private static final String TAG = "Chat Conversation";
@@ -144,6 +145,14 @@ public class ChatConversation {
 
     public void setLastUpdate(Timestamp lastUpdate) {
         this.lastUpdate = lastUpdate;
+    }
+
+    public List<String> getListMemberId() {
+        return listMemberId;
+    }
+
+    public void setListMemberId(List<String> listMemberId) {
+        this.listMemberId = listMemberId;
     }
 
     @Override
