@@ -69,6 +69,39 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         btnForgetPassword = findViewById(R.id.textForgetPwd);
     }
 
+    protected void initData() {
+        mAuth = FirebaseAuth.getInstance();
+        mCallbackManager = CallbackManager.Factory.create();
+
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+        this.initPresenter();
+    }
+
+    protected void initPresenter(){
+        mPresenter = new LoginPresenter(this);
+    }
+
+
+    @Override
+    public void showUserMain(FirebaseUser user) {
+        if (user != null){
+            CurrentUser currentUser = new CurrentUser(user);
+            Toast.makeText(this, currentUser.toString(), Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
+    }
+
+    @Override
+    public void showLoginSuccess(String text) {
+        Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
+    }
+
     private void registerListener() {
         btnLoginGoogle.setOnClickListener(this);
         btnLogin.setOnClickListener(this);

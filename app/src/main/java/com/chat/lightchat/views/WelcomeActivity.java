@@ -23,11 +23,10 @@ public class WelcomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityWelcomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
         user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null){
             CurrentUser myUser = new CurrentUser(user);
-            Intent intent = new Intent(this, DuyChatHomeTest.class);
+            Intent intent = new Intent(this, MainActivity.class);
             Toast.makeText(this,  myUser.toString(), Toast.LENGTH_SHORT).show();
             startActivity(intent);
             finish();

@@ -17,6 +17,8 @@ import com.chat.lightchat.views.DuyChatMessageTest;
 
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class ChatHomeAdapter extends RecyclerView.Adapter<ChatHomeAdapter.ViewHolder> {
     private List<ChatConversation> listConversation;
     private Context context;
@@ -33,7 +35,7 @@ public class ChatHomeAdapter extends RecyclerView.Adapter<ChatHomeAdapter.ViewHo
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
-        View chatView = inflater.inflate(R.layout.duy_chat_home_item, parent, false);
+        View chatView = inflater.inflate(R.layout.item_user, parent, false);
         ViewHolder viewHolder = new ViewHolder(chatView);
         return viewHolder;
     }
@@ -49,8 +51,11 @@ public class ChatHomeAdapter extends RecyclerView.Adapter<ChatHomeAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         ChatConversation item = listConversation.get(position);
-        holder.getTextView().setText(item.toString());
         holder.chatID = item.getChatId();
+//        holder.avatar
+        holder.tvName.setText(item.getChatName());
+        holder.tvTime.setText(item.getLastUpdate().toString());
+        holder.tvChat.setText(item.getSampleText());
     }
 
     @Override
@@ -59,20 +64,18 @@ public class ChatHomeAdapter extends RecyclerView.Adapter<ChatHomeAdapter.ViewHo
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private TextView textView;
         public String chatID;
+        public CircleImageView avatar;
+        public TextView tvName;
+        public TextView tvTime;
+        public TextView tvChat;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
-            textView = itemView.findViewById(R.id.chat_info);
-        }
-
-        public TextView getTextView() {
-            return textView;
-        }
-
-        public void setTextView(TextView textView) {
-            this.textView = textView;
+            avatar = itemView.findViewById(R.id.imageUser);
+            tvName = itemView.findViewById(R.id.tvName);
+            tvTime = itemView.findViewById(R.id.tvTime);
+            tvChat = itemView.findViewById(R.id.tvChat);
         }
 
         @Override
