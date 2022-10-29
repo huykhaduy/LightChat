@@ -117,7 +117,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         if (user != null){
             CurrentUser currentUser = new CurrentUser(user);
             Toast.makeText(this, currentUser.toString(), Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(this, MainActivity.class);
+            Intent intent = new Intent(this, DuyChatHomeTest.class);
             startActivity(intent);
             finish();
         }

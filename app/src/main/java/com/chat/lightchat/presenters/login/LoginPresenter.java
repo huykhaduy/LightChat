@@ -6,7 +6,7 @@ import android.util.Patterns;
 
 import androidx.annotation.NonNull;
 
-import com.chat.lightchat.models.User;
+import com.chat.lightchat.models.PublicUser;
 import com.facebook.AccessToken;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -62,6 +62,7 @@ public class LoginPresenter implements LoginContract.Presenter {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
+                            saveNewUserToPublicInfo(task, user);
 //                            mView.showLoading(false);
                             mView.showUserMain(user);
                         } else {
@@ -93,6 +94,8 @@ public class LoginPresenter implements LoginContract.Presenter {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
+                            saveNewUserToPublicInfo(task, user);
+
                             mView.showLoading(false);
                             mView.showLoginSuccess("Thành công");
                             mView.showUserMain(user);
@@ -116,6 +119,7 @@ public class LoginPresenter implements LoginContract.Presenter {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
+                            saveNewUserToPublicInfo(task, user);
                             mView.showLoginSuccess("Thành công");
                             mView.showUserMain(user);
                         } else {
@@ -136,5 +140,17 @@ public class LoginPresenter implements LoginContract.Presenter {
             return ("Vui lòng nhập mật khẩu");
         }
         return "";
+    }
+
+    protected void saveNewUserToPublicInfo(Task<AuthResult> task, FirebaseUser user){
+        boolean isNewbie = task.getResult().getAdditionalUserInfo().isNewUser();
+        if (isNewbie && user != null){
+            saveNewUserToPublicInfo(user);
+        }
+    }
+
+    protected void saveNewUserToPublicInfo(FirebaseUser user){
+        PublicUser publicUser = new PublicUser(user, true, null);
+        PublicUser.saveUserInfo(publicUser);
     }
 }

@@ -1,7 +1,6 @@
 package com.chat.lightchat.views;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -16,14 +15,12 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.chat.lightchat.R;
-import com.chat.lightchat.presenters.login.LoginPresenter;
 import com.chat.lightchat.presenters.register.RegisterContract;
 import com.chat.lightchat.presenters.register.RegisterPresenter;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
-import com.google.firebase.auth.FirebaseUser;
 
 public class RegisterActivity extends LoginActivity implements RegisterContract.View, View.OnClickListener {
 

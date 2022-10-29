@@ -159,7 +159,7 @@ public class CurrentUser {
                 });
     }
 
-    public static void updateUserDisplayName(String displayName) {
+    public static Task<Void> updateUserDisplayName(String displayName) {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
         UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
@@ -167,17 +167,17 @@ public class CurrentUser {
                 .build();
         if (user == null){
             Log.i(TAG, "User is not login");
-            return;
+            return null;
         }
-        user.updateProfile(profileUpdates)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            Log.i(TAG, "Change successfully");
-                        }
-                    }
-                });
+        return user.updateProfile(profileUpdates);
+//                .addOnCompleteListener(new OnCompleteListener<Void>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<Void> task) {
+//                        if (task.isSuccessful()) {
+//                            Log.i(TAG, "Change successfully");
+//                        }
+//                    }
+//                });
     }
 
     public static void updateUserPhotoUrl(String photoUrl) {

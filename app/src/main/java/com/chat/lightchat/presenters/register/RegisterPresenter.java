@@ -6,13 +6,12 @@ import android.util.Patterns;
 import androidx.annotation.NonNull;
 
 import com.chat.lightchat.models.CurrentUser;
-import com.chat.lightchat.models.User;
 import com.chat.lightchat.presenters.login.LoginContract;
 import com.chat.lightchat.presenters.login.LoginPresenter;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class RegisterPresenter extends LoginPresenter implements RegisterContract.Presenter{
@@ -35,11 +34,26 @@ public class RegisterPresenter extends LoginPresenter implements RegisterContrac
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
-                    FirebaseUser user = mAuth.getCurrentUser();
-                    CurrentUser.updateUserDisplayName(displayName);
-                    mView.showLoading(false);
-                    mView.showLoginSuccess("Thành công");
-                    mView.showUserMain(user);
+                    CurrentUser.updateUserDisplayName(displayName).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                mView.showLoading(false);
+                                mView.showLoginSuccess("Thành công");
+                                FirebaseUser user = mAuth.getCurrentUser();
+                                saveNewUserToPublicInfo(user);
+                                mView.showUserMain(user);
+                            }
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            mView.showLoading(false);
+                            Log.w(TAG, "createUserWithEmail:failure", task.getException());
+                            mView.showLoginFail("Thất bại add name");
+                            mView.showLoading(false);
+                        }
+                    });
                 }
                 else {
                     mView.showLoading(false);
