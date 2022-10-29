@@ -5,6 +5,8 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,16 +14,19 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 
 import com.chat.lightchat.databinding.FragmentChatBinding;
+import com.chat.lightchat.models.CurrentUser;
 import com.chat.lightchat.views.LoginActivity;
 import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class ChatFragment extends Fragment {
 
-
-
+    private UserAdapter userAdapter;
     public ChatFragment() {
         // Required empty public constructor
     }
@@ -35,7 +40,11 @@ public class ChatFragment extends Fragment {
 
         binding.imgBtnSignOut.setOnClickListener(v->{nextActivity();});
 
-
+        userAdapter = new UserAdapter(container.getContext());
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(container.getContext(), RecyclerView.VERTICAL, false);
+        binding.recycviewUser.setLayoutManager(linearLayoutManager);
+        userAdapter.setData(getListUser());
+        binding.recycviewUser.setAdapter(userAdapter);
 
 //        return view;
             return binding.getRoot();
@@ -46,5 +55,12 @@ public class ChatFragment extends Fragment {
     private void nextActivity(){
         FirebaseAuth.getInstance().signOut();
         startActivity(new Intent(getActivity(), LoginActivity.class));
+    }
+
+    private List<CurrentUser> getListUser(){
+        List<CurrentUser> list = new ArrayList<>();
+        // Viet tiep ne
+//        list.add(CurrentUser.)
+        return list;
     }
 }

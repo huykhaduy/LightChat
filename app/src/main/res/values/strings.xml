@@ -25,6 +25,7 @@
     <string name="text_mess">Đoạn chat</string>
     <string name="text_profile">Hồ sơ</string>
     <string name="text_friends">Mọi người</string>
+    <string name="text_search">Tìm kiếm ...</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
