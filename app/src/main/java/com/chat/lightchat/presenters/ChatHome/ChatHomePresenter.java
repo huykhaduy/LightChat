@@ -55,6 +55,9 @@ public class ChatHomePresenter implements ChatHomeContract.Presenter{
                                 case MODIFIED:
                                     ChatConversation editItem = dc.getDocument().toObject(ChatConversation.class);
                                     editItem.setChatId(dc.getDocument().getId());
+                                    if (editItem.getLastUpdate() == null)
+                                        break;
+
                                     int index = mAdapter.getItemHasKey(editItem.getChatId());
                                     if (index >= 0) {
                                         listConversation.set(index, editItem);

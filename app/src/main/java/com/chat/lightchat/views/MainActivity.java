@@ -10,7 +10,9 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.chat.lightchat.R;
 import com.chat.lightchat.databinding.ActivityMainBinding;
@@ -27,23 +29,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_main);
-//        FirebaseAuth auth = FirebaseAuth.getInstance();
-//        auth.createUserWithEmailAndPassword("duy123@gmail.com","03123131233");
+        setContentView(R.layout.activity_main);
+        viewPager2 = findViewById(R.id.Viewpager2);
+        bottomNavigationView = findViewById(R.id.bottomNavigationView);
 
-//        binding = ActivityMainBinding.inflate(getLayoutInflater());
-//        setContentView(binding.getRoot());
-
-            setContentView(R.layout.activity_main);
-            viewPager2 = findViewById(R.id.Viewpager2);
-            bottomNavigationView = findViewById(R.id.bottomNavigationView);
-            viewPager2.setPageTransformer(new ZoomOutPageTransformer());
-
-//         replaceFragment(new ChatFragment());
-
+        viewPager2.setPageTransformer(new ZoomOutPageTransformer());
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(this);
         viewPager2.setAdapter(viewPagerAdapter);
-
 
 
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
@@ -78,11 +70,22 @@ public class MainActivity extends AppCompatActivity {
                     case 2:
                         bottomNavigationView.getMenu().findItem(R.id.profile).setChecked(true);
                         break;
-
-
                 }
             }
+
+//            @Override
+//            public void onPageScrollStateChanged(int state) {
+//                super.onPageScrollStateChanged(state);
+//            }
+//
+//            @Override
+//            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+//                super.onPageScrolled(position, positionOffset, positionOffsetPixels);
+//            }
         });
+
+        viewPager2.setUserInputEnabled(false);
+        viewPager2.setNestedScrollingEnabled(true);
 
     }
 

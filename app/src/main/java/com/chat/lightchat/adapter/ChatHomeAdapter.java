@@ -13,8 +13,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.chat.lightchat.R;
 import com.chat.lightchat.models.ChatConversation;
 import com.chat.lightchat.models.CurrentUser;
+import com.chat.lightchat.models.TimeSince;
 import com.chat.lightchat.views.DuyChatMessageTest;
 
+import java.util.Date;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -54,7 +56,10 @@ public class ChatHomeAdapter extends RecyclerView.Adapter<ChatHomeAdapter.ViewHo
         holder.chatID = item.getChatId();
 //        holder.avatar
         holder.tvName.setText(item.getChatName());
-        holder.tvTime.setText(item.getLastUpdate().toString());
+        if (item.getLastUpdate() != null)
+            holder.tvTime.setText(TimeSince.from(item.getLastUpdate()));
+        else
+            holder.tvTime.setText("");
         holder.tvChat.setText(item.getSampleText());
     }
 
