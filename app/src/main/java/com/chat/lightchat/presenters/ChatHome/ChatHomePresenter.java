@@ -13,6 +13,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -81,6 +82,26 @@ public class ChatHomePresenter implements ChatHomeContract.Presenter{
                         }
                     }
                 });
+    }
+
+    @Override
+    @SuppressLint("NotifyDataSetChanged")
+    public void filterChatContains(String searchText, String userID){
+        Log.i("TextChage",searchText);
+        if (searchText == null || searchText.isEmpty()){
+            this.listConversation.clear();
+            mAdapter.setListConversation(this.listConversation);
+            this.listerForIncomingChatHome(userID);
+        }
+        else {
+            List<ChatConversation> result = new ArrayList<>();
+            for (ChatConversation chat : listConversation){
+                if (StringUtils.containsIgnoreCase(chat.getChatName(), searchText)){
+                    result.add(chat);
+                }
+            }
+            mAdapter.setListConversation(result);
+        }
     }
 
     @SuppressLint("NotifyDataSetChanged")

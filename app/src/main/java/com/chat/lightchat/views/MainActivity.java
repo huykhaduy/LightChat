@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         viewPager2.setUserInputEnabled(false);
-        viewPager2.setNestedScrollingEnabled(true);
+//        viewPager2.setNestedScrollingEnabled(true);
 
     }
 

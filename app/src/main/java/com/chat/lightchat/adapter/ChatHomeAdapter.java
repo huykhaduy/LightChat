@@ -1,7 +1,9 @@
 package com.chat.lightchat.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +18,7 @@ import com.chat.lightchat.models.CurrentUser;
 import com.chat.lightchat.models.TimeSince;
 import com.chat.lightchat.views.DuyChatMessageTest;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -26,6 +29,7 @@ public class ChatHomeAdapter extends RecyclerView.Adapter<ChatHomeAdapter.ViewHo
     private Context context;
 
     public ChatHomeAdapter() {
+        listConversation = new ArrayList<>();
     }
 
     public ChatHomeAdapter(List<ChatConversation> listConversation) {
@@ -36,10 +40,8 @@ public class ChatHomeAdapter extends RecyclerView.Adapter<ChatHomeAdapter.ViewHo
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         context = parent.getContext();
-        LayoutInflater inflater = LayoutInflater.from(context);
-        View chatView = inflater.inflate(R.layout.item_user, parent, false);
-        ViewHolder viewHolder = new ViewHolder(chatView);
-        return viewHolder;
+        View chatView = LayoutInflater.from(context).inflate(R.layout.item_user, parent, false);
+        return new ViewHolder(chatView);
     }
 
     public int getItemHasKey(String key){
@@ -95,7 +97,9 @@ public class ChatHomeAdapter extends RecyclerView.Adapter<ChatHomeAdapter.ViewHo
         return listConversation;
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     public void setListConversation(List<ChatConversation> listConversation) {
         this.listConversation = listConversation;
+        this.notifyDataSetChanged();
     }
 }

@@ -10,5 +10,6 @@ public class ChatHomeContract {
 
     public interface Presenter{
         void listerForIncomingChatHome(String userID);
+        void filterChatContains(String search, String userID);
     }
 }

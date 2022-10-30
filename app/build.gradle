@@ -49,6 +49,7 @@ dependencies {
 
     //Libraries
     implementation 'com.airbnb.android:lottie:5.2.0'
+    implementation 'org.apache.commons:commons-lang3:3.12.0'
 
     // Scalable Size Unit ( SP for diffent screen sizes)
 //    implementation 'com.intuit.sdp:sdp-android:1.0.6'
