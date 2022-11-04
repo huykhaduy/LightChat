@@ -79,7 +79,7 @@ public class ChatHomeAdapter extends RecyclerView.Adapter<ChatHomeAdapter.ViewHo
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
-            avatar = itemView.findViewById(R.id.imageUser);
+            avatar  = itemView.findViewById(R.id.imageUser);
             tvName = itemView.findViewById(R.id.tvName);
             tvTime = itemView.findViewById(R.id.tvTime);
             tvChat = itemView.findViewById(R.id.tvChat);

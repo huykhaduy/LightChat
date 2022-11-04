@@ -62,8 +62,8 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
     // Firebase
-    implementation 'com.google.firebase:firebase-messaging:23.0.8'
-    implementation 'com.google.firebase:firebase-firestore:24.3.1'
+    implementation 'com.google.firebase:firebase-messaging:23.1.0'
+    implementation 'com.google.firebase:firebase-firestore:24.4.0'
     // Facebook login
     implementation 'com.facebook.android:facebook-login:latest.release'
 
@@ -71,9 +71,12 @@ dependencies {
     implementation 'com.google.android.gms:play-services-auth:20.3.0'
 
     // Bottom
-    implementation 'com.google.android.material:material:1.6.1'
+    implementation 'com.google.android.material:material:1.7.0'
 
     //MultiDex
     implementation 'androidx.multidex:multidex:2.0.1'
+
+    //Use stringUtil
+    implementation  'org.apache.commons:commons-lang3:3.12.0'
 
 }

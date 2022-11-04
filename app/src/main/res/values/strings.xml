@@ -26,6 +26,10 @@
     <string name="text_profile">Hồ sơ</string>
     <string name="text_friends">Mọi người</string>
     <string name="text_search">Tìm kiếm ...</string>
+    <string name="text_search_friends">Tìm kiếm bạn bè</string>
+    <string name="text_infoUser">Hồ sơ của bạn</string>
+    <string name="text_numberPhone">Số điện thoại</string>
+    <string name="text_update">Cập nhật</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
