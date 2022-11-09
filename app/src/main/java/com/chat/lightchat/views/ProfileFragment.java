@@ -1,5 +1,6 @@
 package com.chat.lightchat.views;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -10,20 +11,27 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ProgressBar;
 
 import com.chat.lightchat.R;
 import com.chat.lightchat.databinding.FragmentProfileBinding;
 import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.textfield.TextInputEditText;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 
-public class ProfileFragment extends Fragment {
+public class ProfileFragment extends Fragment implements View.OnClickListener {
 
     CircleImageView imgAva;
     FloatingActionButton floatingactionbutton;
-
+    TextInputEditText textFullName;
+    TextInputEditText textEmail;
+    TextInputEditText textNumberPhone;
+    Button btnUpdate;
+    ProgressBar progressBar;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -36,21 +44,20 @@ public class ProfileFragment extends Fragment {
         // Inflate the layout for this fragment
 //        FragmentProfileBinding binding = FragmentProfileBinding.inflate(inflater, container, false);
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
+        initView(view);
+        registerListener();
 
 
-        floatingactionbutton = view.findViewById(R.id.floatingActionButton);
-        imgAva = view.findViewById(R.id.imgProject);
-
-            floatingactionbutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ImagePicker.with(ProfileFragment.this)
-                        .crop()	    			//Crop image(Optional), Check Customization for more option
-                        .compress(1024)			//Final image size will be less than 1 MB(Optional)
-                        .maxResultSize(1080, 1080)	//Final image resolution will be less than 1080 x 1080(Optional)
-                        .start();
-            }
-        });
+//            floatingactionbutton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                ImagePicker.with(ProfileFragment.this)
+//                        .crop()	    			//Crop image(Optional), Check Customization for more option
+//                        .compress(1024)			//Final image size will be less than 1 MB(Optional)
+//                        .maxResultSize(1080, 1080)	//Final image resolution will be less than 1080 x 1080(Optional)
+//                        .start();
+//            }
+//        });
 
 
 
@@ -65,4 +72,45 @@ public class ProfileFragment extends Fragment {
         imgAva.setImageURI(uri);
 
     }
+
+    private void initView(View view){
+        floatingactionbutton = view.findViewById(R.id.floatingActionButton);
+        imgAva = view.findViewById(R.id.imgProject);
+        textFullName = view.findViewById(R.id.inputEditTextNameProfile);
+        textEmail = view.findViewById(R.id.inputEditTextEmailProfile);
+        textNumberPhone = view.findViewById(R.id.inputEditTextNumberPhoneProfile);
+        btnUpdate = view.findViewById(R.id.btn_Update);
+        progressBar = view.findViewById(R.id.progressBarProfile);
+    }
+
+    private void registerListener(){
+        floatingactionbutton.setOnClickListener(this);
+
+    }
+
+    @SuppressLint("NonConstantResourceId")
+    @Override
+    public void onClick(View view) {
+        int viewId = view.getId();
+        switch (viewId) {
+            case R.id.floatingActionButton:
+                clickHandelImg();
+                break;
+
+
+                default:
+                break;
+
+        }
+    }
+
+
+    public void clickHandelImg(){
+                ImagePicker.with(ProfileFragment.this)
+                        .crop()	    			//Crop image(Optional), Check Customization for more option
+                        .compress(1024)			//Final image size will be less than 1 MB(Optional)
+                        .maxResultSize(1080, 1080)	//Final image resolution will be less than 1080 x 1080(Optional)
+                        .start();
+    }
+
 }
