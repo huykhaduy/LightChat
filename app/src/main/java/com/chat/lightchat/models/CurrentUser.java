@@ -15,7 +15,7 @@ import com.google.firebase.auth.UserProfileChangeRequest;
 public class CurrentUser {
     private String email;
     private String displayName;
-    private Uri photoUrl;
+    private String photoUrl;
     private boolean isEmailVerified;
     private String uid;
     private String providerID;
@@ -38,7 +38,7 @@ public class CurrentUser {
     }
 
     // Default POJO constructor
-    public CurrentUser(String email, String displayName, Uri photoUrl, boolean isEmailVerified, String uid, String providerID, String phoneNumber) {
+    public CurrentUser(String email, String displayName, String photoUrl, boolean isEmailVerified, String uid, String providerID, String phoneNumber) {
         this.email = email;
         this.displayName = displayName;
         this.photoUrl = photoUrl;
@@ -64,11 +64,11 @@ public class CurrentUser {
         this.displayName = displayName;
     }
 
-    public Uri getPhotoUrl() {
+    public String getPhotoUrl() {
         return photoUrl;
     }
 
-    public void setPhotoUrl(Uri photoUrl) {
+    public void setPhotoUrl(String photoUrl) {
         this.photoUrl = photoUrl;
     }
 
@@ -107,7 +107,7 @@ public class CurrentUser {
     public void setInfoDefault(FirebaseUser user){
         displayName = user.getDisplayName();
         email = user.getEmail();
-        photoUrl = user.getPhotoUrl();
+        photoUrl = user.getPhotoUrl().toString();
         isEmailVerified = user.isEmailVerified();
         uid = user.getUid();
         providerID = user.getProviderId();
@@ -117,7 +117,7 @@ public class CurrentUser {
     public void setInfoFromProvider(UserInfo info){
         displayName = info.getDisplayName();
         email = info.getEmail();
-        photoUrl = info.getPhotoUrl();
+        photoUrl = info.getPhotoUrl().toString();
         isEmailVerified = info.isEmailVerified();
         uid = info.getUid();
         providerID = info.getProviderId();
