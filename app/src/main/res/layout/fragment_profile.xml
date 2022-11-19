@@ -7,18 +7,18 @@
     tools:context=".views.ProfileFragment" >
 
 
-
     <TextView
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:text="@string/text_infoUser"
-        android:textStyle="bold"
-        android:textColor="@color/black"
+        android:layout_marginTop="36dp"
         android:fontFamily="@font/tienne"
-        android:textSize="25dp"
+        android:text="@string/text_infoUser"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -49,6 +49,8 @@
         app:fabCustomSize="35dp"
         android:clickable="true"
         android:src="@drawable/camera2"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"
         android:focusable="true"
         android:backgroundTint="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/framelayoutImage"

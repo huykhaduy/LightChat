@@ -15,6 +15,13 @@
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
         tools:targetApi="31">
         <activity
+            android:name=".ChatActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".views.DuyChatMessageTest"
             android:exported="false">
             <meta-data
@@ -28,7 +35,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
         <activity
             android:name=".views.LoginActivity"
             android:exported="false"
@@ -55,27 +61,21 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-<!--        <activity-->
-<!--            android:name=".views.LoginUserActivity"-->
-<!--            android:windowSoftInputMode="adjustResize"/>-->
-<!--        <activity-->
-<!--            android:name=".views.SignupActivity"-->
-<!--            android:windowSoftInputMode="adjustResize"/>-->
-        <activity android:name=".views.MainActivity"/>
-
-
+        </activity> <!-- <activity -->
+        <!-- android:name=".views.LoginUserActivity" -->
+        <!-- android:windowSoftInputMode="adjustResize"/> -->
+        <!-- <activity -->
+        <!-- android:name=".views.SignupActivity" -->
+        <!-- android:windowSoftInputMode="adjustResize"/> -->
+        <activity android:name=".views.MainActivity" />
         <activity
             android:name=".views.SignupActivity"
-            android:windowSoftInputMode="adjustResize"/>
-
-<!--        <activity-->
-<!--            android:name=".views.LoginUserActivity"-->
-<!--            android:windowSoftInputMode="adjustResize"/>-->
-<!--        <activity-->
-<!--            android:name=".views.SignupActivity"-->
-<!--            android:windowSoftInputMode="adjustResize"/>-->
-
+            android:windowSoftInputMode="adjustResize" /> <!-- <activity -->
+        <!-- android:name=".views.LoginUserActivity" -->
+        <!-- android:windowSoftInputMode="adjustResize"/> -->
+        <!-- <activity -->
+        <!-- android:name=".views.SignupActivity" -->
+        <!-- android:windowSoftInputMode="adjustResize"/> -->
         <service
             android:name=".firebase.MessagingService"
             android:exported="false">
