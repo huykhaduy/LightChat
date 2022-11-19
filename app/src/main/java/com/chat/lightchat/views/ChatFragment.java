@@ -72,7 +72,7 @@ public class ChatFragment extends Fragment implements ChatHomeContract.View {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                mPresenter.filterChatContains(searchView.getQuery().toString(), user.getUid());
+                mPresenter.filterChatContains(newText, user.getUid());
                 return false;
             }
         });

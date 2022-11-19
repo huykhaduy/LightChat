@@ -43,7 +43,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
         if(currentUser == null){
             return;
         }
-        holder.imageView.setImageURI(currentUser.getPhotoUrl());
+//        holder.imageView.setIma(currentUser.getPhotoUrl());
         holder.tvName.setText(currentUser.getDisplayName());
 
     }

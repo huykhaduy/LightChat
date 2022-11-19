@@ -1,21 +1,29 @@
 package com.chat.lightchat.presenters.Friends;
 
+import android.util.Log;
+import android.util.Patterns;
+import android.widget.ImageView;
+
 import com.chat.lightchat.adapter.ListFriendAdapter;
-import com.chat.lightchat.models.CurrentUser;
 import com.chat.lightchat.models.Friends;
+import com.chat.lightchat.models.PublicUser;
+
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class FriendsPresenter implements FriendsContract.Presenter{
-    private List<CurrentUser> listFriend;
+    private List<PublicUser> listFriend;
     private ListFriendAdapter mAdapter;
+    private FriendsContract.View mView;
+    private final List<PublicUser> allUsers = PublicUser.getAllUser();
 
 
-    public FriendsPresenter(){
+    public FriendsPresenter(FriendsContract.View mView){
+        this.mView = mView;
         this.listFriend = new ArrayList<>();
         this.mAdapter = new ListFriendAdapter(listFriend);
-
     }
 
     public ListFriendAdapter getmAdapter(){
@@ -23,11 +31,24 @@ public class FriendsPresenter implements FriendsContract.Presenter{
     }
 
     @Override
-    public void filterFriendsContains(String searchText, String userID) {
-        if(searchText == null || searchText.isEmpty()){
-//            this.listFriend.clear();
-            mAdapter.setListFriends(this.listFriend);
-
+    public void filterFriendsContains(String searchText) {
+        if (listFriend.size()>0){
+            listFriend.clear();
         }
+        if(!searchText.isEmpty()){
+            for (PublicUser user: allUsers){
+                if (StringUtils.containsIgnoreCase(user.getEmail(), searchText) || StringUtils.containsIgnoreCase(user.getDisplayName(), searchText))
+                    listFriend.add(user);
+            }
+        }
+        if (listFriend.size() == 0){
+            mView.showImageFriend();
+            Log.i("Image","Show");
+        }
+        else {
+            mView.hideImageFriend();
+            Log.i("Image","Hide");
+        }
+        mAdapter.setListFriends(this.listFriend);
     }
 }

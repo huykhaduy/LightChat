@@ -2,24 +2,37 @@ package com.chat.lightchat.models;
 
 import android.net.Uri;
 import android.util.Log;
+import android.util.Patterns;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserInfo;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.ServerTimestamp;
+
+import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class PublicUser {
     private String uid;
     private String displayName;
-    private Uri photoUrl;
+    private String photoUrl;
     private String email;
+    private String phone;
     private boolean isOnline;
     private @ServerTimestamp Timestamp lastOnline;
     private final static String TAG = "Public User";
@@ -31,16 +44,18 @@ public class PublicUser {
         this.uid = user.getUid();
         this.displayName = user.getDisplayName();
         this.email = user.getEmail();
-        this.photoUrl = user.getPhotoUrl();
+        this.phone = user.getPhoneNumber();
+        this.photoUrl = user.getPhotoUrl().toString();
         this.isOnline = isOnline;
         this.lastOnline = lastOnline;
     }
 
-    public PublicUser(String uid, String displayName, Uri photoUrl, String email, boolean isOnline, Timestamp lastOnline) {
+    public PublicUser(String uid, String displayName, String photoUrl, String email, String phone, boolean isOnline, Timestamp lastOnline) {
         this.uid = uid;
         this.displayName = displayName;
         this.photoUrl = photoUrl;
         this.email = email;
+        this.phone = phone;
         this.isOnline = isOnline;
         this.lastOnline = lastOnline;
     }
@@ -58,13 +73,67 @@ public class PublicUser {
         return user[0];
     }
 
+//    public static PublicUser searchUserInfo(@NotNull  String searchText){
+//        List<PublicUser> list = new ArrayList<>();
+//        FirebaseFirestore ref = FirebaseFirestore.getInstance();
+//        //Search text contains name or emails
+//        boolean isEmail = Patterns.EMAIL_ADDRESS.matcher(searchText).matches();
+//
+//        if (isEmail){
+//            for (PublicUser user : myPublicUserList){
+//                if (!user.email.isEmpty() && String.con)
+//            }
+//            //Old method
+//            ref.collection("Users").whereEqualTo("email",searchText)
+//                .get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+//                        @Override
+//                        public void onSuccess(QuerySnapshot snapshots) {
+//                            for (DocumentSnapshot documentSnapshot : snapshots.getDocuments()){
+//                                PublicUser user = documentSnapshot.toObject(PublicUser.class);
+//                                list.add(user);
+//                            }
+//                        }
+//                    });
+//        }
+//        else {
+//
+//            ref.collection("Users").whereEqualTo("displayName", searchText)
+//                    .get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+//                        @Override
+//                        public void onSuccess(QuerySnapshot snapshots) {
+//                            for (DocumentSnapshot documentSnapshot : snapshots.getDocuments()){
+//                                PublicUser user = documentSnapshot.toObject(PublicUser.class);
+//                                list.add(user);
+//                            }
+//                        }
+//                    });
+//        }
+//        return null;
+//    }
+
+    public static List<PublicUser> getAllUser(){
+        List<PublicUser> myList = new ArrayList<>();
+        FirebaseFirestore ref = FirebaseFirestore.getInstance();
+        ref.collection("Users").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot snapshots) {
+                List<PublicUser> list = snapshots.toObjects(PublicUser.class);
+                for (PublicUser user:list){
+                    Log.i("PublicUser",user.toString());
+                }
+                myList.addAll(list);
+            }
+        });
+        return myList;
+    }
+
     public static void saveUserInfo(PublicUser user){
         FirebaseFirestore ref = FirebaseFirestore.getInstance();
-        ref.collection("Users").add(user)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+        ref.collection("Users").document(user.uid).set(user)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.d(TAG, "DocumentSnapshot written with ID: " + documentReference.getId());
+                    public void onSuccess(Void unused) {
+                        Log.d(TAG, "DocumentSnapshot written with ID: "+user.uid);
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -126,11 +195,11 @@ public class PublicUser {
         this.displayName = displayName;
     }
 
-    public Uri getPhotoUrl() {
+    public String getPhotoUrl() {
         return photoUrl;
     }
 
-    public void setPhotoUrl(Uri photoUrl) {
+    public void setPhotoUrl(String photoUrl) {
         this.photoUrl = photoUrl;
     }
 
@@ -156,5 +225,26 @@ public class PublicUser {
 
     public void setLastOnline(Timestamp lastOnline) {
         this.lastOnline = lastOnline;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    @Override
+    public String toString() {
+        return "PublicUser{" +
+                "uid='" + uid + '\'' +
+                ", displayName='" + displayName + '\'' +
+                ", photoUrl=" + photoUrl +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", isOnline=" + isOnline +
+                ", lastOnline=" + lastOnline +
+                '}';
     }
 }

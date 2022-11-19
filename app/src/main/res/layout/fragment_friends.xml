@@ -65,7 +65,7 @@
             android:layout_height="match_parent"
             android:src="@drawable/andfriends"
             android:scaleType="fitCenter"
-            android:visibility="invisible"
+            android:visibility="visible"
 
             />
 

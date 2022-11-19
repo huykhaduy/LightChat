@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.chat.lightchat.models.ChatConversation;
 import com.chat.lightchat.models.CurrentUser;
 import com.chat.lightchat.models.Friends;
+import com.chat.lightchat.models.PublicUser;
 import com.chat.lightchat.views.DuyChatMessageTest;
 
 import java.util.List;
@@ -25,11 +26,11 @@ import java.util.List;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ListFriendAdapter extends RecyclerView.Adapter<ListFriendAdapter.ViewHolder> {
-    private List<CurrentUser> listFriends;
+    private List<PublicUser> listFriends;
     private Context context;
 
 
-    public ListFriendAdapter(List<CurrentUser> listFriends){
+    public ListFriendAdapter(List<PublicUser> listFriends){
         this.listFriends = listFriends;
     }
 
@@ -43,7 +44,7 @@ public class ListFriendAdapter extends RecyclerView.Adapter<ListFriendAdapter.Vi
 
     @Override
     public void onBindViewHolder(@NonNull ListFriendAdapter.ViewHolder holder, int position) {
-        CurrentUser item = listFriends.get(position);
+        PublicUser item = listFriends.get(position);
 //        holder.chatID = item.getChatId();
 
         holder.tvName.setText(item.getDisplayName());
@@ -74,7 +75,7 @@ public class ListFriendAdapter extends RecyclerView.Adapter<ListFriendAdapter.Vi
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    public void setListFriends(List<CurrentUser> listFriends) {
+    public void setListFriends(List<PublicUser> listFriends) {
         this.listFriends = listFriends;
         this.notifyDataSetChanged();
     }
