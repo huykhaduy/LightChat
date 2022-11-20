@@ -3,7 +3,6 @@ package com.chat.lightchat.adapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,12 +13,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.chat.lightchat.R;
 import com.chat.lightchat.models.ChatConversation;
-import com.chat.lightchat.models.CurrentUser;
 import com.chat.lightchat.models.TimeSince;
 import com.chat.lightchat.views.DuyChatMessageTest;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -56,6 +53,7 @@ public class ChatHomeAdapter extends RecyclerView.Adapter<ChatHomeAdapter.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         ChatConversation item = listConversation.get(position);
         holder.chatID = item.getChatId();
+        holder.chatConversation = item;
 //        holder.avatar
         holder.tvName.setText(item.getChatName());
         if (item.getLastUpdate() != null)
@@ -72,6 +70,7 @@ public class ChatHomeAdapter extends RecyclerView.Adapter<ChatHomeAdapter.ViewHo
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public String chatID;
+        public ChatConversation chatConversation;
         public CircleImageView avatar;
         public TextView tvName;
         public TextView tvTime;
@@ -89,6 +88,7 @@ public class ChatHomeAdapter extends RecyclerView.Adapter<ChatHomeAdapter.ViewHo
         public void onClick(View view) {
             Intent intent = new Intent(context, DuyChatMessageTest.class);
             intent.putExtra("chatID", chatID);
+            intent.putExtra("chatName", chatConversation.getChatName());
             context.startActivity(intent);
         }
     }

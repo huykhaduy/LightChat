@@ -25,9 +25,9 @@ public class ChatConversationPresenter implements ChatConversationContract.Prese
     private static final String TAG = "Chat Conversation";
     private List<ChatMessage> listMessages;
 
-    public ChatConversationPresenter() {
+    public ChatConversationPresenter(String uid) {
         listMessages = new ArrayList<>();
-        adapter = new ChatMessageAdapter(listMessages);
+        adapter = new ChatMessageAdapter(listMessages, uid);
     }
 
     @Override

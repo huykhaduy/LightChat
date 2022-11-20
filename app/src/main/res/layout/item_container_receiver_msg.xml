@@ -36,12 +36,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:fontFamily="@font/tienne"
-        android:textSize="14sp"
+        android:text="time_send"
         android:textColor="#75A6F1"
-        android:text="heloosdasd"
-        app:layout_constraintTop_toBottomOf="@+id/tvMsgChatReceiver"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="@+id/tvMsgChatReceiver"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/tvMsgChatReceiver" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

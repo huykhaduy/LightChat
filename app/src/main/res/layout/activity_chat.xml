@@ -44,7 +44,7 @@
         app:riv_corner_radius="16dp" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/chatName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -68,18 +68,18 @@
         android:clipToPadding="false"
         android:orientation="vertical"
         android:overScrollMode="never"
-        app:stackFromEnd="true"
         android:padding="15dp"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="@id/viewBackground"
         app:layout_constraintTop_toBottomOf="@id/imageBack"
-    />
+        app:stackFromEnd="true" />
 
     <ProgressBar
         android:id="@+id/progressBar_Chat"
         android:layout_width="28dp"
         android:layout_height="28dp"
+        android:visibility="gone"
         android:indeterminateTint="@color/color_main"
         app:layout_constraintBottom_toBottomOf="@id/viewBackground"
         app:layout_constraintEnd_toEndOf="@id/viewBackground"
@@ -108,31 +108,33 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         >
-    <androidx.appcompat.widget.AppCompatImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="4dp"
-        android:layout_marginEnd="4dp"
-        android:padding="6dp"
-        android:src="@drawable/ic_send"
-       />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/addChatBtn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            android:padding="6dp"
+            android:src="@drawable/ic_send" />
     </FrameLayout>
 
     <EditText
+        android:id="@+id/textField"
         android:layout_width="0dp"
         android:layout_height="40dp"
-        android:layout_marginBottom="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="8dp"
-        android:inputType="text"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/background_chat_input"
-        android:hint="@string/text_input_chat"
         android:fontFamily="@font/tienne"
-        android:textSize="13sp"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
+        android:hint="@string/text_input_chat"
         android:imeOptions="actionDone"
         android:importantForAutofill="no"
+        android:inputType="text"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:textSize="13sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/layoutSend"
         app:layout_constraintStart_toStartOf="parent" />
