@@ -3,31 +3,32 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="4dp">
+    android:padding="6dp">
 
     <TextView
-        android:id="@+id/tvMsgChatSent"
-        android:layout_width="0dp"
+        android:id="@+id/tvMsgChatSentSame"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
         android:background="@drawable/background_sent_msg"
         android:padding="12dp"
-        android:text="ong thay tui de thuong khong"
-        android:textSize="14sp"
+        android:text="None text"
         android:textColor="@color/white"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintWidth_percent="0.8" />
 
     <TextView
-        android:id="@+id/tvDateTimeChatSent"
+        android:id="@+id/timeSentByMe"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
+        android:layout_marginEnd="10dp"
         android:fontFamily="@font/tienne"
-        android:text="time_send"
         android:textColor="#75A6F1"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvMsgChatSent" />
+        app:layout_constraintTop_toBottomOf="@+id/tvMsgChatSentSame" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

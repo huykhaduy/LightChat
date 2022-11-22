@@ -13,14 +13,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.chat.lightchat.R;
 import com.chat.lightchat.databinding.FragmentChatBinding;
 import com.chat.lightchat.databinding.FragmentFriendsBinding;
 import com.chat.lightchat.presenters.ChatHome.ChatHomeContract;
 import com.chat.lightchat.presenters.Friends.FriendsContract;
 import com.chat.lightchat.presenters.Friends.FriendsPresenter;
+import com.chat.lightchat.utilities.ImageUrl;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 /**
@@ -32,6 +36,7 @@ public class FriendsFragment extends Fragment implements FriendsContract.View {
     private FriendsPresenter mPresenter;
     private SearchView searchView;
     private ImageView imageView;
+    private CircleImageView circleImageView;
 
 
     public FriendsFragment() {
@@ -58,6 +63,7 @@ public class FriendsFragment extends Fragment implements FriendsContract.View {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getContext());
 
         imageView = view.findViewById(R.id.imgFriends);
+        circleImageView = view.findViewById(R.id.imgProject);
 
         recyclerView = view.findViewById(R.id.recyclerViewFriends);
         recyclerView.setAdapter(mPresenter.getmAdapter());
@@ -76,6 +82,8 @@ public class FriendsFragment extends Fragment implements FriendsContract.View {
                 return false;
             }
         });
+
+        Glide.with(getContext()).load(ImageUrl.getImage(user.getPhotoUrl())).centerCrop().placeholder(R.drawable.user).into(circleImageView);
 
         return view;
     }

@@ -7,6 +7,8 @@ import android.widget.ImageView;
 import com.chat.lightchat.adapter.ListFriendAdapter;
 import com.chat.lightchat.models.Friends;
 import com.chat.lightchat.models.PublicUser;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -18,6 +20,7 @@ public class FriendsPresenter implements FriendsContract.Presenter{
     private ListFriendAdapter mAdapter;
     private FriendsContract.View mView;
     private final List<PublicUser> allUsers = PublicUser.getAllUser();
+    private FirebaseUser myUser = FirebaseAuth.getInstance().getCurrentUser();
 
 
     public FriendsPresenter(FriendsContract.View mView){
@@ -38,7 +41,8 @@ public class FriendsPresenter implements FriendsContract.Presenter{
         if(!searchText.isEmpty()){
             for (PublicUser user: allUsers){
                 if (StringUtils.containsIgnoreCase(user.getEmail(), searchText) || StringUtils.containsIgnoreCase(user.getDisplayName(), searchText))
-                    listFriend.add(user);
+                    if (!user.getUid().equals(myUser.getUid()))
+                        listFriend.add(user);
             }
         }
         if (listFriend.size() == 0){

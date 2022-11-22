@@ -1,5 +1,6 @@
 package com.chat.lightchat.models;
 
+import android.annotation.SuppressLint;
 import android.util.Log;
 
 import com.google.firebase.Timestamp;
@@ -36,6 +37,7 @@ public class TimeSince {
 //            return now.getHours()+":"+now.getMinutes();
 //        }
 //    }
+    @SuppressLint({"SuspiciousIndentation", "DefaultLocale"})
     public static String from(Timestamp pastTime) {
         Date time = pastTime.toDate();
         long diff = Timestamp.now().getSeconds() - pastTime.getSeconds();
@@ -53,8 +55,8 @@ public class TimeSince {
             return days+" ngày trước";
         if (hours>8)
             return hours+" giờ trước";
-//        if (hours>0)
-            return time.getHours()+":"+time.getMinutes();
+        return String.format("%02d:%02d", time.getHours(), time.getMinutes());
+//        return time.getHours()+":"+time.getMinutes();
 //        if (mins>0)
 //            return mins+" phút trước";
 //        return diff+" giây trước";

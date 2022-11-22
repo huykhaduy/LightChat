@@ -24,6 +24,7 @@ public class ChatMessage {
     private @ServerTimestamp Timestamp createAt;
     private int messType;
     private String messId;
+//    private String chatAvatar;
     private static final String TAG = "Chat Message";
 
     public ChatMessage() {

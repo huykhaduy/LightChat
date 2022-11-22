@@ -150,7 +150,7 @@ public class LoginPresenter implements LoginContract.Presenter {
     }
 
     protected void saveNewUserToPublicInfo(FirebaseUser user){
-        PublicUser publicUser = new PublicUser(user, true, null);
+        PublicUser publicUser = new PublicUser(user, true);
         PublicUser.saveUserInfo(publicUser);
     }
 }

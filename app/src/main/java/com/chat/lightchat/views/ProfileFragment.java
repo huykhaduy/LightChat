@@ -14,11 +14,15 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
 
+import com.bumptech.glide.Glide;
 import com.chat.lightchat.R;
 import com.chat.lightchat.databinding.FragmentProfileBinding;
+import com.chat.lightchat.utilities.ImageUrl;
 import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -32,9 +36,11 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     TextInputEditText textNumberPhone;
     Button btnUpdate;
     ProgressBar progressBar;
+    private FirebaseUser user;
 
     public ProfileFragment() {
         // Required empty public constructor
+        user = FirebaseAuth.getInstance().getCurrentUser();
     }
 
 
@@ -46,18 +52,8 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         initView(view);
         registerListener();
+        setDefaultData();
 
-
-//            floatingactionbutton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                ImagePicker.with(ProfileFragment.this)
-//                        .crop()	    			//Crop image(Optional), Check Customization for more option
-//                        .compress(1024)			//Final image size will be less than 1 MB(Optional)
-//                        .maxResultSize(1080, 1080)	//Final image resolution will be less than 1080 x 1080(Optional)
-//                        .start();
-//            }
-//        });
 
 
 
@@ -85,7 +81,13 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
     private void registerListener(){
         floatingactionbutton.setOnClickListener(this);
+    }
 
+    private void setDefaultData(){
+        textFullName.setText(user.getDisplayName());
+        textEmail.setText(user.getEmail());
+        textNumberPhone.setText(user.getPhoneNumber());
+        Glide.with(getContext()).load(ImageUrl.getImage(user.getPhotoUrl())).centerCrop().placeholder(R.drawable.user).into(imgAva);
     }
 
     @SuppressLint("NonConstantResourceId")
@@ -96,8 +98,6 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
             case R.id.floatingActionButton:
                 clickHandelImg();
                 break;
-
-
                 default:
                 break;
 

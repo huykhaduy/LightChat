@@ -4,13 +4,13 @@ import java.io.File;
 
 public class ChatConversationContract {
     public interface View{
-        void showSending();
-        void showImageUpload();
+        void showLoading();
+        void hideLoading();
+        void scrollToBottom();
     }
 
     public interface Presenter{
-        void sendPicture(File img);
-        void sendMessage(String text);
         void listenerForNewMessage(String chatId);
+        int getListSize();
     }
 }

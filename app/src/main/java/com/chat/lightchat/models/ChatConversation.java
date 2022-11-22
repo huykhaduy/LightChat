@@ -1,9 +1,12 @@
 package com.chat.lightchat.models;
 
+import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.chat.lightchat.views.DuyChatMessageTest;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.Timestamp;
@@ -23,17 +26,26 @@ public class ChatConversation {
     private @ServerTimestamp
     Timestamp createAt;
     private @ServerTimestamp Timestamp lastUpdate;
-    private List<String> listMemberId;
+    private List<PublicUser> listUsers;
+    private List<String> listMemberId = new ArrayList<>();
     private static final String TAG = "Chat Conversation";
 
     public ChatConversation() {
     }
 
-    public ChatConversation(String chatName, String imageUrl, String sampleText, List<String> listMemberId) {
+    public ChatConversation(String chatName, String imageUrl, String sampleText, List<PublicUser> listMember) {
         this.chatName = chatName;
-        this.imageUrl = imageUrl;
+        if (imageUrl == null)
+            this.imageUrl = "";
+        if (imageUrl == null)
+            this.imageUrl = "";
+        else
+            this.imageUrl = imageUrl.toString();
         this.sampleText = sampleText;
-        this.listMemberId = listMemberId;
+        this.listUsers = listMember;
+        for (PublicUser user:listMember){
+            listMemberId.add(user.getUid());
+        }
     }
 
     public static ChatConversation getChatConversationId(String chatId){
@@ -55,6 +67,27 @@ public class ChatConversation {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
                         Log.d(TAG, "DocumentSnapshot written with ID: " + documentReference.getId());
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error adding document", e);
+                    }
+                });
+    }
+
+    public static void addAndOpenChatConversation(ChatConversation conversation, Context context){
+        FirebaseFirestore ref = FirebaseFirestore.getInstance();
+        ref.collection("ChatRoom").add(conversation)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+
+                        Intent intent = new Intent(context, DuyChatMessageTest.class);
+                        intent.putExtra("chatID", documentReference.getId());
+                        intent.putExtra("chatName", conversation.getChatName());
+                        context.startActivity(intent);
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -147,6 +180,14 @@ public class ChatConversation {
         this.lastUpdate = lastUpdate;
     }
 
+    public List<PublicUser> getListUsers() {
+        return listUsers;
+    }
+
+    public void setListUsers(List<PublicUser> listUsers) {
+        this.listUsers = listUsers;
+    }
+
     public List<String> getListMemberId() {
         return listMemberId;
     }
@@ -164,7 +205,7 @@ public class ChatConversation {
                 ", sampleText='" + sampleText + '\'' +
                 ", createAt=" + createAt +
                 ", lastUpdate=" + lastUpdate +
-                ", listMemberId=" + listMemberId +
+                ", listMemberId=" + listUsers.toString() +
                 '}';
     }
 }

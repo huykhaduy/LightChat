@@ -9,6 +9,7 @@ import com.chat.lightchat.adapter.ChatHomeAdapter;
 import com.chat.lightchat.adapter.ChatMessageAdapter;
 import com.chat.lightchat.models.ChatConversation;
 import com.chat.lightchat.models.ChatMessage;
+import com.chat.lightchat.models.PublicUser;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -24,20 +25,12 @@ public class ChatConversationPresenter implements ChatConversationContract.Prese
     private ChatMessageAdapter adapter;
     private static final String TAG = "Chat Conversation";
     private List<ChatMessage> listMessages;
+    private ChatConversationContract.View mView;
 
-    public ChatConversationPresenter(String uid) {
+    public ChatConversationPresenter(ChatConversationContract.View mView, String uid) {
+        this.mView = mView;
         listMessages = new ArrayList<>();
         adapter = new ChatMessageAdapter(listMessages, uid);
-    }
-
-    @Override
-    public void sendPicture(File img) {
-
-    }
-
-    @Override
-    public void sendMessage(String text) {
-
     }
 
     @Override
@@ -64,6 +57,7 @@ public class ChatConversationPresenter implements ChatConversationContract.Prese
                                         return;
                                     listMessages.add(item);
                                     adapter.notifyItemChanged(listMessages.size()-1);
+                                    mView.scrollToBottom();
                                     break;
                                 case MODIFIED:
                                     ChatMessage editItem = dc.getDocument().toObject(ChatMessage.class);
@@ -88,6 +82,11 @@ public class ChatConversationPresenter implements ChatConversationContract.Prese
                         }
                     }
                 });
+    }
+
+    @Override
+    public int getListSize() {
+        return this.listMessages.size();
     }
 
     public ChatMessageAdapter getAdapter() {

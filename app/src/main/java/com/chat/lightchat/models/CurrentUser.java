@@ -5,6 +5,7 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.chat.lightchat.utilities.ImageUrl;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -107,7 +108,7 @@ public class CurrentUser {
     public void setInfoDefault(FirebaseUser user){
         displayName = user.getDisplayName();
         email = user.getEmail();
-        photoUrl = user.getPhotoUrl().toString();
+        this.photoUrl = ImageUrl.toString(user.getPhotoUrl());
         isEmailVerified = user.isEmailVerified();
         uid = user.getUid();
         providerID = user.getProviderId();
@@ -117,7 +118,7 @@ public class CurrentUser {
     public void setInfoFromProvider(UserInfo info){
         displayName = info.getDisplayName();
         email = info.getEmail();
-        photoUrl = info.getPhotoUrl().toString();
+        this.photoUrl = ImageUrl.toString(info.getPhotoUrl());
         isEmailVerified = info.isEmailVerified();
         uid = info.getUid();
         providerID = info.getProviderId();
@@ -170,14 +171,6 @@ public class CurrentUser {
             return null;
         }
         return user.updateProfile(profileUpdates);
-//                .addOnCompleteListener(new OnCompleteListener<Void>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<Void> task) {
-//                        if (task.isSuccessful()) {
-//                            Log.i(TAG, "Change successfully");
-//                        }
-//                    }
-//                });
     }
 
     public static void updateUserPhotoUrl(String photoUrl) {

@@ -154,7 +154,6 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
                 break;
             case R.id.btn_sign_up:
                 clickHandleRegister();
-                showLoginSuccess("Load sign up");
                 break;
             case R.id.btn_login_google:
                 clickHandleGoogle();

@@ -4,13 +4,17 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.chat.lightchat.databinding.ActivityWelcomeBinding;
 import com.chat.lightchat.models.CurrentUser;
+import com.chat.lightchat.models.PublicUser;
 import com.facebook.login.Login;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
+
+import java.util.List;
 
 
 public class WelcomeActivity extends AppCompatActivity {
@@ -25,9 +29,9 @@ public class WelcomeActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null){
-            CurrentUser myUser = new CurrentUser(user);
+//            CurrentUser myUser = new CurrentUser(user);
             Intent intent = new Intent(this, MainActivity.class);
-            Toast.makeText(this,  myUser.toString(), Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this,  myUser.toString(), Toast.LENGTH_SHORT).show();
             startActivity(intent);
             finish();
         }

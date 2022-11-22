@@ -47,17 +47,17 @@ public class DuyChatHomeTest extends AppCompatActivity implements ChatHomeContra
         recyclerView.setLayoutManager(linearLayoutManager);
 
         btn = findViewById(R.id.button2);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                String chatName, String imageUrl, String sampleText, List<String> listMemberId
-                List<String> myList = new ArrayList<>();
-                myList.add(user.getUid());
-                ChatConversation chat = new ChatConversation("Chat voi duy", "image.png", "This is sample text", myList);
-                ChatConversation.addChatConversation(chat);
-                Toast.makeText(DuyChatHomeTest.this, "Add conversation", Toast.LENGTH_SHORT).show();
-            }
-        });
+//        btn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+////                String chatName, String imageUrl, String sampleText, List<String> listMemberId
+//                List<String> myList = new ArrayList<>();
+//                myList.add(user.getUid());
+//                ChatConversation chat = new ChatConversation("Chat voi duy", null, "This is sample text", myList);
+//                ChatConversation.addChatConversation(chat);
+//                Toast.makeText(DuyChatHomeTest.this, "Add conversation", Toast.LENGTH_SHORT).show();
+//            }
+//        });
     }
 
     protected void onStart() {

@@ -16,18 +16,22 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import androidx.appcompat.widget.SearchView;
 
+import com.bumptech.glide.Glide;
 import com.chat.lightchat.R;
 import com.chat.lightchat.databinding.FragmentChatBinding;
 import com.chat.lightchat.models.ChatConversation;
 import com.chat.lightchat.models.CurrentUser;
 import com.chat.lightchat.presenters.ChatHome.ChatHomeContract;
 import com.chat.lightchat.presenters.ChatHome.ChatHomePresenter;
+import com.chat.lightchat.utilities.ImageUrl;
 import com.chat.lightchat.views.LoginActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -38,6 +42,7 @@ public class ChatFragment extends Fragment implements ChatHomeContract.View {
     private ChatHomePresenter mPresenter;
     private RecyclerView recyclerView;
     private SearchView searchView;
+    private CircleImageView imgView;
 
     public ChatFragment() {
         user = FirebaseAuth.getInstance().getCurrentUser();
@@ -57,6 +62,7 @@ public class ChatFragment extends Fragment implements ChatHomeContract.View {
         recyclerView.setLayoutManager(linearLayoutManager);
 
         searchView = view.findViewById(R.id.search_view);
+        imgView = view.findViewById(R.id.imgProject);
 //        searchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
 //            @Override
 //            public void onFocusChange(View view, boolean b) {
@@ -82,24 +88,25 @@ public class ChatFragment extends Fragment implements ChatHomeContract.View {
     public void onStart() {
         super.onStart();
         mPresenter.listerForIncomingChatHome(user.getUid());
-
+        Glide.with(getContext()).load(ImageUrl.getImage(user.getPhotoUrl())).centerCrop().placeholder(R.drawable.user).into(imgView);
     }
 
 
     private void nextActivity(){
         FirebaseAuth.getInstance().signOut();
+        getActivity().finish();
         startActivity(new Intent(getContext(), LoginActivity.class));
     }
 
     // Save chat demo lên firebase để test
-    private void addToFirebase(){
-        List<String> myList = new ArrayList<>();
-        myList.add(user.getUid());
-        for (int i=1;i<=10;i++){
-            ChatConversation chat = new ChatConversation("Chat này để test "+Integer.toString(i), "image.png", "This is sample text", myList);
-            ChatConversation.addChatConversation(chat);
-        }
-    }
+//    private void addToFirebase(){
+//        List<String> myList = new ArrayList<>();
+//        myList.add(user.getUid());
+//        for (int i=1;i<=10;i++){
+//            ChatConversation chat = new ChatConversation("Chat này để test "+Integer.toString(i), null, "This is sample text", myList);
+//            ChatConversation.addChatConversation(chat);
+//        }
+//    }
 
 
     @Override
