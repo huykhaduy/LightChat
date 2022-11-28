@@ -57,6 +57,8 @@ public class ChatConversationPresenter implements ChatConversationContract.Prese
                                         return;
                                     listMessages.add(item);
                                     adapter.notifyItemChanged(listMessages.size()-1);
+                                    int start = Math.max(listMessages.size() - 60, 0);
+                                    adapter.notifyItemRangeChanged(start,listMessages.size());
                                     mView.scrollToBottom();
                                     break;
                                 case MODIFIED:

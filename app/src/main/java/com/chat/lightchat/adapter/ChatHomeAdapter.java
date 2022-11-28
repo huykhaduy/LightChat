@@ -68,6 +68,7 @@ public class ChatHomeAdapter extends RecyclerView.Adapter<ChatHomeAdapter.ViewHo
                 holder.tvName.setText(user.getDisplayName());
                 holder.chatName = user.getDisplayName();
                 holder.chatReceiver = user.getUid();
+                holder.chatReceiverUrl = user.getPhotoUrl();
                 Glide.with(context).load(ImageUrl
                                 .getImage(user.getPhotoUrl())).centerCrop().placeholder(R.drawable.user)
                                 .into(holder.avatar);
@@ -77,6 +78,7 @@ public class ChatHomeAdapter extends RecyclerView.Adapter<ChatHomeAdapter.ViewHo
                 holder.tvName.setText(user.getDisplayName());
                 holder.chatName = user.getDisplayName();
                 holder.chatReceiver = user.getUid();
+                holder.chatReceiverUrl = user.getPhotoUrl();
                 Glide.with(context).load(ImageUrl
                                 .getImage(user.getPhotoUrl())).centerCrop().placeholder(R.drawable.user)
                                 .into(holder.avatar);
@@ -102,6 +104,7 @@ public class ChatHomeAdapter extends RecyclerView.Adapter<ChatHomeAdapter.ViewHo
         public String chatID;
         public String chatName;
         public String chatReceiver;
+        public String chatReceiverUrl;
         public ChatConversation chatConversation;
         public CircleImageView avatar;
         public TextView tvName;
@@ -122,6 +125,7 @@ public class ChatHomeAdapter extends RecyclerView.Adapter<ChatHomeAdapter.ViewHo
             intent.putExtra("chatID", chatID);
             intent.putExtra("chatName", chatName);
             intent.putExtra("chatReceiver", chatReceiver);
+            intent.putExtra("chatReceiverUrl", chatReceiverUrl);
             context.startActivity(intent);
         }
     }

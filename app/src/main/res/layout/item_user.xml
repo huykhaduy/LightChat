@@ -28,6 +28,7 @@
             android:fontFamily="@font/tienne"
             android:maxLines="1"
             android:text="Trang Thanh Phuc"
+            android:maxWidth="260dp"
             android:textColor="#000000"
             android:textSize="16sp" />
 

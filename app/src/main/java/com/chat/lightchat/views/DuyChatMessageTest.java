@@ -41,6 +41,8 @@ public class DuyChatMessageTest extends AppCompatActivity implements View.OnClic
     private FirebaseUser user;
     private ProgressBar loadingBar;
     private CircleImageView imgAvatar;
+    private String chatReceiver;
+    private String chatReceiverUrl;
 
 
     @Override
@@ -52,7 +54,8 @@ public class DuyChatMessageTest extends AppCompatActivity implements View.OnClic
         Intent info = getIntent();
         chatId = info.getStringExtra("chatID");
         chatNameStr = info.getStringExtra("chatName");
-
+        chatReceiver = info.getStringExtra("chatReceiver");
+        chatReceiverUrl = info.getStringExtra("chatReceiverUrl");
         mRecycleView = findViewById(R.id.recyclerViewChat);
         user = FirebaseAuth.getInstance().getCurrentUser();
         mPresenter = new ChatConversationPresenter(this, user.getUid());
@@ -74,7 +77,7 @@ public class DuyChatMessageTest extends AppCompatActivity implements View.OnClic
         chatName.setText(chatNameStr);
         addChat.setOnClickListener(this);
         backMenu.setOnClickListener(this);
-        Glide.with(this).load(ImageUrl.getImage(user.getPhotoUrl())).centerCrop().placeholder(R.drawable.user).into(imgAvatar);
+        Glide.with(this).load(ImageUrl.getImage(chatReceiverUrl)).centerCrop().placeholder(R.drawable.user).into(imgAvatar);
     }
 
     protected void onStart() {

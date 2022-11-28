@@ -18,13 +18,14 @@
 
     <TextView
         android:id="@+id/tvMsgChatReceiverSame"
+        android:maxWidth="250dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/background_receiver_msg"
         android:padding="12dp"
-        android:text="Hello Duy ne Phuc"
+        android:text="Hello Duy"
         android:textColor="@color/white"
         android:textSize="14sp"
         app:layout_constraintStart_toEndOf="@+id/imgChatReceiver"

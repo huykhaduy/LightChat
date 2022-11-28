@@ -64,6 +64,7 @@ dependencies {
     // Firebase
     implementation 'com.google.firebase:firebase-messaging:23.1.0'
     implementation 'com.google.firebase:firebase-firestore:24.4.0'
+    implementation 'com.google.firebase:firebase-storage'
     // Facebook login
     implementation 'com.facebook.android:facebook-login:latest.release'
 

@@ -7,11 +7,18 @@ import androidx.annotation.NonNull;
 
 import com.chat.lightchat.utilities.ImageUrl;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserInfo;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 public class CurrentUser {
     private String email;
@@ -171,6 +178,52 @@ public class CurrentUser {
             return null;
         }
         return user.updateProfile(profileUpdates);
+    }
+
+    public static void updateUserImages(Uri photoUri){
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (firebaseUser == null){
+            Log.i(TAG, "User is not login");
+            return;
+        }
+
+        FirebaseFirestore ref = FirebaseFirestore.getInstance();
+        ref.collection("Users").document(firebaseUser.getUid())
+                .get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        PublicUser user = documentSnapshot.toObject(PublicUser.class);
+                        FirebaseStorage storage = FirebaseStorage.getInstance();
+                        StorageReference storageRef = storage.getReference();
+                        StorageReference photoRef = storageRef.child("images/"+photoUri.getLastPathSegment());
+                        UploadTask uploadTask = photoRef.putFile(photoUri);
+                        uploadTask.addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception exception) {
+                                Log.i(TAG, "Fail add");
+                            }
+                        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                            @Override
+                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                photoRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                    @Override
+                                    public void onSuccess(Uri uri) {
+                                        String url = uri.toString();
+                                        Log.i(TAG, url);
+                                        PublicUser.updateUserInfo(user.getUid(), user);
+
+                                        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                                                .setPhotoUri(Uri.parse(url))
+                                                .build();
+                                        firebaseUser.updateProfile(profileUpdates);
+                                    }
+                                });
+
+                            }
+                        });
+
+                    }
+                });
     }
 
     public static void updateUserPhotoUrl(String photoUrl) {

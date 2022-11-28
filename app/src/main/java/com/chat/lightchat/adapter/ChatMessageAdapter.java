@@ -99,10 +99,18 @@ public class ChatMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
                 if (position < mChatMessages.size() - 1){
                     ChatMessage nextMess = mChatMessages.get(position+1);
-                    if (nextMess.getSenderId().equals(mess.getSenderId()) && nextMess.getCreateAt().getSeconds() - mess.getCreateAt().getSeconds() <= 120){
-                        holdSend.timeSent.setVisibility(View.GONE);
-                        holdSend.timeSent.setText("");
-                        return;
+                    if (nextMess.getCreateAt() != null && mess.getCreateAt() != null){
+                        if (nextMess.getSenderId().equals(mess.getSenderId()) && nextMess.getCreateAt().getSeconds() - mess.getCreateAt().getSeconds() <= 120){
+                            holdSend.timeSent.setVisibility(View.GONE);
+                            holdSend.timeSent.setText("");
+                            return;
+                        }
+                    }
+                    else {
+                        if (position >= mChatMessages.size() - 2){
+                            holdSend.timeSent.setVisibility(View.GONE);
+                            holdSend.timeSent.setText("");
+                        }
                     }
                 }
 

@@ -17,12 +17,15 @@ import android.widget.ProgressBar;
 import com.bumptech.glide.Glide;
 import com.chat.lightchat.R;
 import com.chat.lightchat.databinding.FragmentProfileBinding;
+import com.chat.lightchat.models.CurrentUser;
 import com.chat.lightchat.utilities.ImageUrl;
 import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import org.checkerframework.checker.units.qual.Current;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -66,7 +69,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         super.onActivityResult(requestCode, resultCode, data);
         Uri uri = data.getData();
         imgAva.setImageURI(uri);
-
+        CurrentUser.updateUserImages(uri);
     }
 
     private void initView(View view){

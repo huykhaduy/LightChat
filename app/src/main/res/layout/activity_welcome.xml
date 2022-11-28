@@ -12,7 +12,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="70dp"
         android:fontFamily="@font/tienne"
         android:padding="5sp"
         android:text="@string/text_welcome"
@@ -44,7 +44,7 @@
         android:id="@+id/imageView"
         android:layout_width="0dp"
         android:layout_height="214dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="80dp"
         android:padding="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
@@ -57,7 +57,7 @@
         android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="110dp"
         android:layout_marginEnd="15dp"
         android:background="@drawable/btn_login"
         android:fontFamily="@font/tienne"
@@ -65,92 +65,8 @@
         android:textAllCaps="false"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
-
-    <RelativeLayout
-        android:id="@+id/relativeLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical|center_horizontal"
-        android:layout_marginTop="100dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_login_now">
-
-        <View
-            android:layout_width="80dp"
-            android:layout_height="2dp"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/orText"
-            android:background="#c0c0c0" />
-
-        <TextView
-            android:id="@+id/orText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:hint="or"
-            android:textColor="@android:color/black" />
-
-        <View
-            android:layout_width="80dp"
-            android:layout_height="2dp"
-            android:layout_centerVertical="true"
-            android:layout_toLeftOf="@+id/orText"
-            android:background="#c0c0c0" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/relativeLayout_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical|center_horizontal"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="15dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/relativeLayout">
-
-
-        <ImageButton
-            android:id="@+id/btn_login_google3"
-            android:layout_width="145dp"
-            android:layout_height="48dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="0dp"
-            android:layout_marginEnd="0dp"
-            android:layout_marginBottom="0dp"
-            android:background="@drawable/btn_login_2"
-            app:srcCompat="@drawable/login_google"
-            tools:ignore="DuplicateSpeakableTextCheck" />
-
-
-        <Button
-            android:id="@+id/btn_login_face"
-            android:layout_width="145dp"
-            android:layout_height="48dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="0dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginBottom="0dp"
-            android:layout_toRightOf="@+id/btn_login_google3"
-            android:background="@drawable/btn_login_2"
-            android:text="facebook"
-            android:textAllCaps="false"
-            android:textColor="#2F6FDA"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

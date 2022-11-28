@@ -9,7 +9,7 @@
     <string name="hint_welcome2">Vui lòng đăng nhập và đăng ký để tiếp tục</string>
     <string name="hint_welcome_signup">Vui lòng đăng ký để tiếp tục</string>
     <string name="text_signup_email">Đăng ký với email</string>
-    <string name="text_login_welcome">Đăng nhập ngay</string>
+    <string name="text_login_welcome">Bắt đầu ngay</string>
     <string name="text_login_email">Đăng nhập với email</string>
     <string name="hint_login_remember">Nhớ đăng nhập</string>
     <string name="hint_signup_policy">Tôi đồng ý với điều khoản</string>
