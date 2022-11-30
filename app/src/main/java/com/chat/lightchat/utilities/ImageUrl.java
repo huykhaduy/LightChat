@@ -13,7 +13,7 @@ public class ImageUrl {
     }
 
     public static String getImage(String imgLink){
-        if (imgLink.isEmpty()){
+        if ( imgLink == null || imgLink.isEmpty()){
             return defaultImage;
         }
         return imgLink;

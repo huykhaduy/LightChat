@@ -210,7 +210,9 @@ public class CurrentUser {
                                     public void onSuccess(Uri uri) {
                                         String url = uri.toString();
                                         Log.i(TAG, url);
+                                        user.setPhotoUrl(url);
                                         PublicUser.updateUserInfo(user.getUid(), user);
+
 
                                         UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                                                 .setPhotoUri(Uri.parse(url))
